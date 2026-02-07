@@ -8,6 +8,9 @@ on:
         required: true
         default: 'https://files.catbox.moe/(RECOMMENDED)'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -46,6 +49,8 @@ jobs:
 
     - name: Upload to Release
       uses: softprops/action-gh-release@v2
+      env:
+          GH_TOKEN: ${{ github.token }}
       with:
         files: output/*.md5
         name: Patched-Recovery
